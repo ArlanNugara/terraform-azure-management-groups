@@ -1,0 +1,15 @@
+// Values
+
+org                        = "arlan"
+asb_definition_id          = "/providers/Microsoft.Authorization/policySetDefinitions/1f3afdf9-d0c9-4c3d-847f-89da613e70a8"
+asb_noncompliance_message  = "This action is not allowed under Azure Security Benchmark Policy Initiative"
+asb_location               = "Canada Central"
+asb_role_assignment_id     = "/providers/Microsoft.Authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c"
+nist_definition_id         = "/providers/Microsoft.Authorization/policySetDefinitions/179d1daa-458f-4e47-8086-2a68d0d6c38f"
+nist_noncompliance_message = "This action is not allowed under NIST SP 800-53 R5 Policy Initiative"
+nist_location              = "Canada Central"
+nist_role_assignment_id    = "/providers/Microsoft.Authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c"
+cis_definition_id          = "/providers/Microsoft.Authorization/policySetDefinitions/c3f5c4d9-9a1d-4a99-85c0-7f93e384d5c5"
+cis_noncompliance_message  = "This action is not allowed under CIS Microsoft Azure Foundations Benchmark v1.4.0 Policy Initiative"
+cis_location               = "Canada Central"
+cis_role_assignment_id     = "/providers/Microsoft.Authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c"
