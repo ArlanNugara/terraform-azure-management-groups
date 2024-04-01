@@ -46,10 +46,10 @@ stages:
             addSpnToEnvironment: true
             scriptLocation: inlineScript
             inlineScript: |
-              export ARM_CLIENT_ID=$(ARM_CLIENT_ID)
-              export ARM_CLIENT_SECRET=$(ARM_CLIENT_SECRET)
-              export ARM_TENANT_ID=$(ARM_TENANT_ID)
-              export ARM_SUBSCRIPTION_ID=$(ARM_SUBSCRIPTION_ID)
+              export ARM_CLIENT_ID=$(ARM-CLIENT-ID)
+              export ARM_CLIENT_SECRET=$(ARM-CLIENT-SECRET)
+              export ARM_SUBSCRIPTION_ID=$(ARM-SUBSCRIPTION-ID)
+              export ARM_TENANT_ID=$(ARM-TENANT-ID)
               terraform init
 
         - task: AzureCLI@2
@@ -71,11 +71,14 @@ stages:
             addSpnToEnvironment: true
             scriptLocation: inlineScript
             inlineScript: |
-              export ARM_CLIENT_ID=$(ARM_CLIENT_ID)
-              export ARM_CLIENT_SECRET=$(ARM_CLIENT_SECRET)
-              export ARM_TENANT_ID=$(ARM_TENANT_ID)
-              export ARM_SUBSCRIPTION_ID=$(ARM_SUBSCRIPTION_ID)
-              terraform plan -var ea_billing_ac_name="PLACEHOLDER" -var ea_name="PLACEHOLDER" -out mg.json
+              export ARM_ACCESS_KEY=$(ARM-ACCESS-KEY)
+              export ARM_CLIENT_ID=$(ARM-CLIENT-ID)
+              export ARM_CLIENT_SECRET=$(ARM-CLIENT-SECRET)
+              export ARM_SUBSCRIPTION_ID=$(ARM-SUBSCRIPTION-ID)
+              export ARM_TENANT_ID=$(ARM-TENANT-ID)
+              export EA_BILLING_AC_NAME=$(EA-BILLING-AC-NAME)
+              export EA_NAME=$(EA-NAME)
+              terraform plan -var ea_billing_ac_name=$(EA_BILLING_AC_NAME) -var ea_name=$(EA_NAME) -out mg.json
               terraform show -json mg.json
         
         - task: AzureCLI@2
@@ -88,9 +91,9 @@ stages:
             addSpnToEnvironment: true
             scriptLocation: inlineScript
             inlineScript: |
-              export ARM_CLIENT_ID=$(ARM_CLIENT_ID)
-              export ARM_CLIENT_SECRET=$(ARM_CLIENT_SECRET)
-              export ARM_TENANT_ID=$(ARM_TENANT_ID)
-              export ARM_SUBSCRIPTION_ID=$(ARM_SUBSCRIPTION_ID)
-              export ARM_ACCESS_KEY=$(ARM_ACCESS_KEY)
+              export ARM_ACCESS_KEY=$(ARM-ACCESS-KEY)
+              export ARM_CLIENT_ID=$(ARM-CLIENT-ID)
+              export ARM_CLIENT_SECRET=$(ARM-CLIENT-SECRET)
+              export ARM_SUBSCRIPTION_ID=$(ARM-SUBSCRIPTION-ID)
+              export ARM_TENANT_ID=$(ARM-TENANT-ID)
               terraform apply mg.json
