@@ -22,8 +22,8 @@ You will need an Enterprise Agreement billing account in order to create subscri
 
 |Key Name|Value|
 |:---|:---|
-|EA-BILLING-AC-NAME|Enterpeise Agreement Billing Account Name|
-|EA-NAME|Enterpeise Agreement Name|
+|EA-BILLING-AC-NAME|Enterprise Agreement Billing Account Name|
+|EA-NAME|Enterprise Agreement Name|
 
 ## Service Connection
 Azure DevOps Pipeline requires Service Connection to run tasks. The Service Principle should have access to Key Vault Secrets ([Get and List Permission](https://learn.microsoft.com/en-us/azure/devops/pipelines/release/azure-key-vault?view=azure-devops&tabs=yaml#set-up-azure-key-vault-access-policies)) to retrieve Key Vault Secret Values required during running the task. Please refer to this [official article](https://learn.microsoft.com/en-us/azure/devops/pipelines/library/service-endpoints?view=azure-devops&tabs=yaml#create-a-service-connection) for creating the Service Connection from a Service Principle. Note the following values for a Service Principle from Azure Portal.
@@ -67,6 +67,30 @@ The code is simplified to granular level for ease of maintenance and understandi
 |main.tf|Terraform Code for creating Subscription, Management Groups, Subscription Association and Policy Assignment|
 |provider.tf|Terraform Code for provider configuration|
 |terraform.auto.tfvars|Terraform Code for providing variable values in run time|
+
+## Updating Pipeline YAML file with values
+
+Once done with all the [above steps](#prerequisites) update the both the pipeline files inside **.pipelines** folder in the repository.
+
+```
+variables:
+  - name: AZURE_SERVICE_CONNECTION
+    value: '< SERVICE CONNECTION NAME >'
+  - group: '< VARIABLE GROUP NAME LINKED TO KEY VAULT >'
+```
+
+## Update Provider file with values
+
+You need to update **provider.tf** file with values for the [Azure Storage Account](#azure-storage-account) which will host the Terraform State file.
+
+```
+backend "azurerm" {
+  resource_group_name  = "< Storage Account Resource Group Name >"
+  storage_account_name = "< Storage Account Name >"
+  container_name       = "tfstate"
+  key                  = "< TFSTATE file name >"
+}
+```
 
 # Resources Deployed
 
