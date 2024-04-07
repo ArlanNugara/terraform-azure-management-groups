@@ -1,6 +1,6 @@
 # Introduction
 
-To be filled by **Arlan / Anubhav**
+**Coming Soon**
 
 **MG and Sub Image to be added here**
 
